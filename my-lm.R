@@ -1,6 +1,7 @@
 require(tidyverse)
 require(magrittr)
 require(papaja)
+require(broom)
 
 
 my.lm <- function(data,
@@ -36,6 +37,55 @@ my.return.model.lm <- function(data, predictor, dv, controls, add.controls = NUL
         formula <- paste(dv, predictors, sep = " ~ ")
         model <- lm(formula, data = data)
         return(model)
+}
+
+
+my.lm.output <- function(model, variable) {
+        coefs <- filter(tidy(model), term == variable)
+        beta <- sprintf("%.2f", round(coefs$estimate, 2))
+        SE <- sprintf("%.2f", round(coefs$std.error, 2))
+        t <- sprintf("%.2f", round(coefs$statistic, 2))
+        df <- glance(model)$df.residual %>% round()
+        p <- round(coefs$p.value, 3)
+        output2 <-
+                ifelse(
+                        p >= .001,
+                        paste0(
+                                "_B_",
+                                " = ",
+                                beta,
+                                ", _SE_",
+                                " = ",
+                                SE,
+                                ", _t_(",
+                                df,
+                                ") = ",
+                                t,
+                                ", _p_ = ",
+                                p
+                        ),
+                        ifelse(
+                                p < .001,
+                                paste0(
+                                        "_B_",
+                                        " = ",
+                                        beta,
+                                        ", _SE_",
+                                        " = ",
+                                        SE,
+                                        ", _t_(",
+                                        df,
+                                        ") = ",
+                                        t,
+                                        ", _p_ < ",
+                                        .001
+                                ),
+                                NA
+                        )
+                )
+        output <- as.vector(output2)
+        print(summary(model))
+        return(output)
 }
 
 

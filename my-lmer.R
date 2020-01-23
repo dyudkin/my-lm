@@ -3,6 +3,7 @@ require(lmerTest)
 require(tidyverse)
 require(magrittr)
 require(papaja)
+require(broom)
 
 
 my.lmer <- function(data,

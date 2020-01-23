@@ -72,11 +72,17 @@ my.lm(mtcars,
       controls = mtcars.controls,
       rm.controls = "hp")
 
+```
+
+```{r Missing Data,eval=F}
+source(here::here('missing-data-function.R'))
+
 my.lm(mtcars, 
       dv = "mpg", 
       predictor = "cyl", 
       controls = mtcars.controls) %>% 
         my.missing.data.model()
+
 ```
 
 
