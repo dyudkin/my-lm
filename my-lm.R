@@ -1,3 +1,8 @@
+require(tidyverse)
+require(magrittr)
+require(papaja)
+
+
 my.lm <- function(data,
                   predictor,
                   dv,
@@ -40,15 +45,6 @@ print_lm <-
                  dv,
                  caption
         ) {
-                if (is.null(caption)){
-                        caption <- paste0("Predictor: ", predictor, "; Dependent Variable: ", dv)
-                        if (!is.null(timepoint)){
-                                caption <- paste0(caption, "; Timepoint: ", timepoint)
-                        }
-                } else {
-                        caption <- caption
-                }
-                
                 df <- themodel %>% summary %>% coefficients %>% tail(-1)
                 confint <- confint(themodel) %>% tail(-1)
                 #std.beta <- std_beta(themodel)[,1:2]

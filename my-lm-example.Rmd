@@ -24,21 +24,6 @@ output            : papaja::apa6_pdf
 
 ---
 
-```{r setup, echo = F, include=F, results='asis', warning=FALSE}
-knitr::opts_chunk$set(echo = F, include=TRUE, message=FALSE, tidy = TRUE, results='asis', warning=FALSE, tidy.opts=list(width.cutoff=60),tidy=TRUE)
-
-
-```
-
-```{r SET WD, eval= T,include=FALSE}
-Console = F
-PDF = T
-source("/Users/DanielYudkin/Dropbox/R/R Functions.R")
-
-mtcars.controls <- c("hp", "wt")
-
-```
-
 (ref:italp) _p_
 (ref:ast) $^*$
 (ref:beta) $\beta$
@@ -46,8 +31,25 @@ mtcars.controls <- c("hp", "wt")
 (ref:cilower) $CI^{95\%}_{lower}$
 (ref:ciupper) $CI^{95\%}_{upper}$
 
-```{r Load Main Dataset, eval = FALSE}
+```{r setup, echo = F, include=F, results='asis', warning=FALSE}
+knitr::opts_chunk$set(echo = F, include=TRUE, message=FALSE, tidy = TRUE, results='asis', warning=FALSE, tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
 
+```{r Load Sources}
+library(here)
+source(here::here('my-lm.R'))
+```
+
+```{r Set Outputs, eval= T,include=FALSE}
+Console = F
+PDF = T
+```
+
+```{r Set Controls, eval= T,include=FALSE}
+mtcars.controls <- c("hp", "wt")
+```
+
+```{r Practice Regressions, eval = FALSE}
 my.lm(mtcars, 
       dv = "mpg", 
       predictor = "cyl", 
@@ -75,9 +77,8 @@ my.lm(mtcars,
       predictor = "cyl", 
       controls = mtcars.controls) %>% 
         my.missing.data.model()
-
-
 ```
+
 
 ## Print Regression Table
 ```{r Regression Table}
