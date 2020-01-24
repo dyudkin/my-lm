@@ -7,14 +7,15 @@ require(broom)
 
 
 my.lmer <- function(data,
-                            predictor,
-                            dv,
-                            controls,
-                            rdm.effect,
-                            row.name = predictor,
-                            add.controls = NULL,
-                            rm.controls = NULL,
-                            caption = NULL) {
+                    predictor,
+                    dv,
+                    controls,
+                    rdm.effect,
+                    row.name = predictor,
+                    add.controls = NULL,
+                    rm.controls = NULL,
+                    caption = NULL,
+                    family = "gaussian") {
         model <-
                 my.return.model.lmer(data,
                                      predictor,
@@ -34,7 +35,13 @@ my.lmer <- function(data,
 }
 
 
-my.return.model.lmer <- function(data, predictor, dv, controls, rdm.effect, add.controls = NULL, rm.controls = NULL) {
+my.return.model.lmer <- function(data, 
+                                 predictor, 
+                                 dv, 
+                                 controls, 
+                                 rdm.effect, 
+                                 add.controls = NULL, 
+                                 rm.controls = NULL) {
         controls <- controls[!controls %in% rm.controls]
         controls <- paste(c(controls, add.controls), collapse = " + ")
         rdm.effect <- paste0("(1|", rdm.effect, ")")

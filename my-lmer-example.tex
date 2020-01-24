@@ -113,18 +113,19 @@
 \begin{ThreePartTable}
 \begin{TableNotes}[para]
 \normalsize{\textit{Note.} \(^*\)\(^*\)\(^*\)\emph{p} < .001, 
-                                                                        \(^*\)\(^*\)\emph{p} < .01, 
-                                                                        \(^*\)\emph{p} < .05, 
-                                                                        \(^\dagger\)\emph{p} <.10}
+                                                              \(^*\)\(^*\)\emph{p} < .01, 
+                                                              \(^*\)\emph{p} < .05, 
+                                                              \(^\dagger\)\emph{p} <.10}
 \end{TableNotes}
 \begin{longtable}{lrrrrrrS[table-format = <0.3]}\noalign{\getlongtablewidth\global\LTcapwidth=\longtablewidth}
-\caption{\label{tab:Regression Table}Example Regression Table}\\
+\caption{\label{tab:Regression Table}Multilevel Regression Table Example}\\
 \toprule
-predictor & \multicolumn{1}{c}{b} & \multicolumn{1}{c}{SE} & \multicolumn{1}{c}{\(CI^{95\%}_{lower}\)} & \multicolumn{1}{c}{\(CI^{95\%}_{upper}\)} & \multicolumn{1}{c}{t} & \multicolumn{1}{c}{df} & \multicolumn{1}{c}{p}\\
+Predictor & \multicolumn{1}{c}{b} & \multicolumn{1}{c}{SE} & \multicolumn{1}{c}{\(CI^{95\%}_{lower}\)} & \multicolumn{1}{c}{\(CI^{95\%}_{upper}\)} & \multicolumn{1}{c}{t} & \multicolumn{1}{c}{df} & \multicolumn{1}{c}{p}\\
 \midrule
-cyl & -0.94 & 0.55 & -2.07 & 0.19 & -1.71 & 28 & .098\(^\dagger\)\\
-hp & -0.02 & 0.01 & -0.04 & 0.01 & -1.52 & 28 & .140\\
-wt & -3.17 & 0.74 & -4.68 & -1.65 & -4.28 & 28 & < .001\(^*\)\(^*\)\(^*\)\\
+homework & 1.95 & 0.36 & 1.24 & 2.64 & 5.38 & 228.98 & < .001\(^*\)\(^*\)\(^*\)\\
+sex & -0.40 & 0.98 & -2.27 & 1.57 & -0.41 & 252.31 & .685\\
+ratio & -0.67 & 0.21 & -1.06 & -0.30 & -3.28 & 6.74 & .014\(^*\)\\
+ses & 3.88 & 0.68 & 2.61 & 5.66 & 5.71 & 109.44 & < .001\(^*\)\(^*\)\(^*\)\\
 \bottomrule
 \addlinespace
 \insertTableNotes

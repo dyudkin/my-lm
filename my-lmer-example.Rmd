@@ -32,14 +32,21 @@ output            : papaja::apa6_pdf
 (ref:ciupper) $CI^{95\%}_{upper}$
 
 ```{r setup, echo = F, include=F, results='asis', warning=FALSE}
-knitr::opts_chunk$set(echo = F, include=TRUE, message=FALSE, tidy = TRUE, results='asis', warning=FALSE, tidy.opts=list(width.cutoff=60),tidy=TRUE)
+knitr::opts_chunk$set(echo = F, 
+                      include=TRUE, 
+                      message=FALSE, 
+                      tidy = TRUE, 
+                      results='asis', 
+                      warning=FALSE, 
+                      tidy.opts=list(width.cutoff=60),
+                      tidy=TRUE)
 ```
 
 ```{r Load Sources}
 library(here)
 source(here::here('my-lmer.R'))
 
-titanic_data <- readRDS("titanic data.Rda")
+math_scores <- readRDS("example data.Rda")
 
 ```
 
@@ -49,15 +56,23 @@ PDF = F
 ```
 
 ```{r Set Controls, eval= T,include=FALSE}
-titanic.controls <- c("Age", "SibSp", "Parch")
+math.controls <- c("sex", "ratio", "ses")
+
 ```
 
 ```{r Practice Regressions, eval = FALSE}
-my.lmer(titanic_data, 
-      dv = "Survived", 
-      predictor = "Fare", 
-      rdm.effect = "Sex",
-      controls = titanic.controls)
+my.lmer(math_scores, 
+      dv = "math", 
+      predictor = "homework", 
+      rdm.effect = "schid",
+      controls = math.controls)
+
+my.lmer(math_scores, 
+      dv = "math", 
+      predictor = "homework", 
+      rdm.effect = "schid",
+      controls = math.controls) %>% 
+  my.missing.data.model()
 
 ```
 
@@ -68,12 +83,12 @@ my.lmer(titanic_data,
 PDF = T
 Console = F
 
-my.lmer(titanic_data, 
-      dv = "Survived", 
-      predictor = "Fare", 
-      rdm.effect = "Sex",
-      controls = titanic.controls,
-      caption = "Example Multilevel Regression Table")
+my.lmer(math_scores, 
+      dv = "math", 
+      predictor = "homework", 
+      rdm.effect = "schid",
+      controls = math.controls,
+      caption = "Multilevel Regression Table Example")
 
 ```
 
